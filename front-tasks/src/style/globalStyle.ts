@@ -2,13 +2,17 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     * {
-        --default-background: #0F1330
-        
-        --green-ultra-dark: #1C2D3E
-        
-        --default-blue: #5C63ED
+        --default-background: rgb(246, 248, 249);
+                
+        --default-white: #FFF;
 
-        --default-white: #FFF
+        --default-blue: #a67ff0;
+
+        --gray: #808080;
+
+        --black:  #000;
+
+        --blue: #0099FF;
     }
     
     body, html{

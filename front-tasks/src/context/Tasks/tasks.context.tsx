@@ -23,6 +23,16 @@ export const TaskContext = createContext<ITaskContext>({} as ITaskContext);
 const TaskProvider = ({ children }: ITaskProvider) => {
   const [tasks, setTasks] = useState<ITask[]>([]);
 
+  useEffect(() => {
+    const listTasks = async () => {
+      const { data } = await api.get("/tasks");
+
+      setTasks(data);
+    };
+
+    listTasks();
+  }, []);
+
   return (
     <TaskContext.Provider value={{ tasks, setTasks }}>
       {children}

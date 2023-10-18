@@ -52,7 +52,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchAppBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "var(--default-blue)",
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -69,7 +74,7 @@ const SearchAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Tasks
+            TasksBoard
           </Typography>
           <Search>
             <SearchIconWrapper>
