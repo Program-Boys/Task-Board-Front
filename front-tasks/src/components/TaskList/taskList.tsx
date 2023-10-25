@@ -8,13 +8,14 @@ interface ITaskList {
   tasks: ITask[];
 }
 
-const TaskList = ({ name, tasks }: ITaskList) => {
+const TaskList = ({ name /*, tasks*/ }: ITaskList) => {
   return (
     <Grid
       sx={{
         backgroundColor: "var(--default-white)",
         borderRadius: "8px",
         width: "300px",
+        minWidth: "300px",
         boxShadow: "rgba(169, 174, 183, 0.5) 0px 1px 2px 0px",
       }}
     >
