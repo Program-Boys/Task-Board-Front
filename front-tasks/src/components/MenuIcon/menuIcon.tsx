@@ -18,7 +18,7 @@ const MenuIcon = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  console.log(options);
+
   return (
     <div>
       <IconButton

@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../services/api";
-import { IUser } from "../User/user.context";
+// import { useNavigate } from "react-router-dom";
+// import api from "../../services/api";
+// import { IUser } from "../User/user.context";
 
 interface ITaskProvider {
   children: ReactNode;
@@ -24,13 +24,11 @@ const TaskProvider = ({ children }: ITaskProvider) => {
   const [tasks, setTasks] = useState<ITask[]>([]);
 
   useEffect(() => {
-    const listTasks = async () => {
-      const { data } = await api.get("/tasks");
-
-      setTasks(data);
-    };
-
-    listTasks();
+    // const listTasks = async () => {
+    //   const { data } = await api.get("/tasks");
+    //   setTasks(data);
+    // };
+    // listTasks();
   }, []);
 
   return (
