@@ -1,48 +1,78 @@
 import React, { FormEventHandler, ReactNode } from "react";
 import { FormStyled } from "./style";
 import { Box, Button, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import { SubmitHandler } from "react-hook-form";
-
-export interface IFormData {
-  name?: string;
-  email: string;
-  password: string;
-}
+import { Link, useLocation } from "react-router-dom";
 
 interface IForm {
   children: ReactNode;
   title: string;
-  redirect?: string;
   onSubmit: FormEventHandler<HTMLFormElement>;
 }
 
-const Form = ({ children, title, redirect, onSubmit }: IForm) => {
+const Form = ({ children, title, onSubmit }: IForm) => {
+  const location = useLocation();
+
   return (
     <Box
       sx={{
         width: "300px",
         padding: "25px",
-        margin: "0 auto",
+        borderRadius: "8px",
         backgroundColor: "var(--default-white)",
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        marginLeft: "-185px",
+        marginTop: "-220px",
       }}
     >
       <FormStyled onSubmit={onSubmit}>
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
           }}
         >
           <Typography color={"var(--gray)"} fontWeight={"bold"}>
             {title}
           </Typography>
-
-          {redirect && <Link to={redirect}>Login</Link>}
         </Box>
         {children}
 
-        <Button type="submit">Confirm</Button>
+        <Button type="submit" variant="contained">
+          {title}
+        </Button>
+        {location.pathname === "/" ? (
+          <>
+            <Typography color={"var(--gray)"}>
+              No account?{" "}
+              <Link
+                to={"/register"}
+                style={{
+                  textDecoration: "underline",
+                }}
+              >
+                {" "}
+                Sign up
+              </Link>
+            </Typography>
+          </>
+        ) : (
+          <>
+            <Typography color={"var(--gray)"}>
+              Already have an account?{" "}
+              <Link
+                to={"/"}
+                style={{
+                  textDecoration: "underline",
+                }}
+              >
+                {" "}
+                Sign In
+              </Link>
+            </Typography>
+          </>
+        )}
       </FormStyled>
     </Box>
   );

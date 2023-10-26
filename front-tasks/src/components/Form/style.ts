@@ -6,8 +6,11 @@ export const FormStyled = styled.form`
   text-align: center;
   gap: 15px;
   width: 300px;
-
   button {
     text-transform: none;
+  }
+
+  span {
+    text-align: left;
   }
 `;
