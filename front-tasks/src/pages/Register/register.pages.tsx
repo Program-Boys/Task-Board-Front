@@ -22,7 +22,7 @@ const Register = () => {
   });
 
   const registerUser = (data: IFormData) => {
-    console.log(data);
+    // console.log(data);
     //aqui vai a request para registro
   };
 
