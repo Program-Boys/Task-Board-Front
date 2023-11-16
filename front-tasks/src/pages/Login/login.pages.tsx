@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUserSchema } from "../../validations/form.validations";
 import ErrorSpan from "../../components/ErrorSpan/errorSpan";
 import { Services } from "../../services/services";
+import { useNavigate } from "react-router-dom";
 
 export interface IFormData {
   email?: string;
@@ -13,6 +14,7 @@ export interface IFormData {
 
 const Login = () => {
   const { login } = Services();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -23,10 +25,11 @@ const Login = () => {
   });
 
   const loginUser = (data: IFormData) => {
-    console.log(data);
-
     login(data).then((res) => {
-      console.log(res);
+      const { access_token } = res.data;
+      window.localStorage.setItem("session", access_token);
+
+      navigate("/tasks");
     });
   };
 
