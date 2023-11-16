@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
         --black:  #000;
 
         --blue: #0099FF;
+
+        --error: #ff3333;
     }
     
     body, html{

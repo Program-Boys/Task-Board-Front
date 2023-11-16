@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import jwt from "jsonwebtoken";
 import api from "../../services/api";
 
 interface IUserProvider {
@@ -33,6 +34,22 @@ const UserProvider = ({ children }: IUserProvider) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<IUser>({} as IUser);
   const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const loadUser = () => {
+      const token = window.localStorage.getItem("session") as string;
+
+      if (token) {
+        try {
+          api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+          setIsLogged(true);
+        } catch (error) {}
+      }
+    };
+
+    loadUser();
+  }, []);
 
   return (
     <UserContext.Provider
