@@ -15,7 +15,11 @@ export interface ITaskContext {
 //Adicionar as outras infos da task depois
 export interface ITask {
   id: string;
-  name: string;
+  title: string;
+  description: string;
+  progress: string;
+  ipp: number;
+  nextPageToken: string;
 }
 
 export const TaskContext = createContext<ITaskContext>({} as ITaskContext);
