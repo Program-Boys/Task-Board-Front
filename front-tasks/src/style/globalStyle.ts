@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0px;
     height: 100vh;
     background-color: var(--default-background);
+    box-sizing: border-box;
   }
   #root{
     width: 100%;

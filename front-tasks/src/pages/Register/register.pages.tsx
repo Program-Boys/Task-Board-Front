@@ -4,13 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerFormSchema } from "../../validations/form.validations";
 import ErrorSpan from "../../components/ErrorSpan/errorSpan";
-
-export interface IFormData {
-  name?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-}
+import { IFormRegisterData } from "../../interfaces/user/interfaces.user";
+import { Services } from "../../services/services";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const {
@@ -21,9 +18,24 @@ const Register = () => {
     resolver: yupResolver(registerFormSchema),
   });
 
-  const registerUser = (data: IFormData) => {
-    // console.log(data);
-    //aqui vai a request para registro
+  const { registerService } = Services();
+  const navigate = useNavigate();
+
+  const registerUser = (data: IFormRegisterData) => {
+    registerService(data)
+      .then((res) => {
+        const { data } = res;
+        toast.success(data.message, {
+          autoClose: 2000,
+        });
+        setTimeout(() => navigate("/"), 2000);
+      })
+      .catch((err) => {
+        const { data } = err.response;
+        toast.error(data.message, {
+          autoClose: 3000,
+        });
+      });
   };
 
   return (

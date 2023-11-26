@@ -45,14 +45,13 @@ const Form = ({ children, title, onSubmit }: IForm) => {
         {location.pathname === "/" ? (
           <>
             <Typography color={"var(--gray)"}>
-              No account?{" "}
+              No account?
               <Link
                 to={"/register"}
                 style={{
                   textDecoration: "underline",
                 }}
               >
-                {" "}
                 Sign up
               </Link>
             </Typography>
@@ -60,14 +59,13 @@ const Form = ({ children, title, onSubmit }: IForm) => {
         ) : (
           <>
             <Typography color={"var(--gray)"}>
-              Already have an account?{" "}
+              Already have an account?
               <Link
                 to={"/"}
                 style={{
                   textDecoration: "underline",
                 }}
               >
-                {" "}
                 Sign In
               </Link>
             </Typography>

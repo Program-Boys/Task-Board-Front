@@ -1,10 +1,19 @@
-import { IFormData } from "../pages/Login/login.pages";
+import {
+  IFormLoginData,
+  IFormRegisterData,
+} from "../interfaces/user/interfaces.user";
 import api from "./api";
 
 const Services = () => {
-  async function login(data: IFormData) {
+  async function loginService(data: IFormLoginData) {
     console.log(data);
     const response = api.post("login", data);
+
+    return response;
+  }
+
+  async function registerService(data: IFormRegisterData) {
+    const response = api.post("users", data);
 
     return response;
   }
@@ -12,7 +21,8 @@ const Services = () => {
   //aqui vão os outros serviços
 
   return {
-    login,
+    loginService,
+    registerService,
   };
 };
 

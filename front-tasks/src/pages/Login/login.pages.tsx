@@ -6,14 +6,11 @@ import { loginUserSchema } from "../../validations/form.validations";
 import ErrorSpan from "../../components/ErrorSpan/errorSpan";
 import { Services } from "../../services/services";
 import { useNavigate } from "react-router-dom";
-
-export interface IFormData {
-  email?: string;
-  password?: string;
-}
+import { IFormLoginData } from "../../interfaces/user/interfaces.user";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { login } = Services();
+  const { loginService } = Services();
   const navigate = useNavigate();
 
   const {
@@ -24,13 +21,19 @@ const Login = () => {
     resolver: yupResolver(loginUserSchema),
   });
 
-  const loginUser = (data: IFormData) => {
-    login(data).then((res) => {
-      const { access_token } = res.data;
-      window.localStorage.setItem("session", access_token);
-
-      navigate("/tasks");
-    });
+  const loginUser = (data: IFormLoginData) => {
+    loginService(data)
+      .then((res) => {
+        const { access_token } = res.data;
+        window.localStorage.setItem("session", access_token);
+        navigate("/tasks");
+      })
+      .catch((err) => {
+        const { data } = err.response;
+        toast.error(data.message, {
+          autoClose: 3000,
+        });
+      });
   };
 
   return (
